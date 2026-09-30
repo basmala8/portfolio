@@ -7,7 +7,7 @@ import { Reveal } from '@/components/reveal'
 import { useSite } from '@/components/site-providers'
 import { cn } from '@/lib/utils'
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/your-form-id'
+const FORMSPREE_ENDPOINT = 'https://formspree.io'
 
 type Status = 'idle' | 'sending' | 'success' | 'error'
 
@@ -20,13 +20,13 @@ const contactLinks = [
   },
   {
     key: 'linkedin',
-    href: 'https://linkedin.com/in/basmala-mohamed-qrr',
+    href: 'https://linkedin.com',
     value: 'basmala-mohamed-qrr',
     Icon: LinkedinIcon,
   },
   {
     key: 'github',
-    href: 'https://github.com/basmala8',
+    href: 'https://github.com',
     value: 'basmala8',
     Icon: GithubIcon,
   },
@@ -68,8 +68,11 @@ export function Contact() {
     github: t.contact.githubLabel,
   }
 
+  // ================= PURPLE INPUT CLASS FOR HIGH VISIBILITY =================
+  // تم تغيير الحدود الافتراضية لتصبح باللون البنفسجي الباهت المدمج border-primary/40
+  // وتأثير الـ focus يضيء بالبنفسجي الصريح والقوي focus:border-primary
   const inputClass =
-    'w-full rounded-xl border border-border bg-background/60 px-2.5 py-2 text-[10px] text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/15 sm:px-3 sm:py-2.5 sm:text-xs md:px-4 md:py-3 md:text-sm'
+    'w-full rounded-xl border border-primary/40 bg-[#141414] px-3 py-2 text-[10px] text-foreground outline-none transition-all duration-300 placeholder:text-muted-foreground/60 focus:border-primary focus:ring-4 focus:ring-primary/20 sm:px-4 sm:py-3 sm:text-xs md:text-sm'
 
   return (
     <section
@@ -78,7 +81,6 @@ export function Contact() {
     >
       {/* subtle ambient glow */}
       <div className="pointer-events-none absolute bottom-10 -start-20 size-80 rounded-full bg-primary/10 blur-[130px] dark:bg-primary/5" />
-
       <div className="pointer-events-none absolute top-10 -end-20 size-80 rounded-full bg-accent/15 blur-[130px] dark:bg-accent/5" />
 
       {/* Contact Info + Form */}
@@ -89,7 +91,6 @@ export function Contact() {
           <Reveal>
             <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
               <span className="h-px w-4 bg-gradient-to-r from-primary to-accent sm:w-6 md:w-8" />
-
               <span className="truncate text-[8px] font-semibold tracking-[0.18em] text-accent uppercase sm:text-[10px] sm:tracking-[0.25em] md:text-xs md:tracking-[0.32em]">
                 {t.nav.contact}
               </span>
@@ -111,11 +112,7 @@ export function Contact() {
                   <a
                     href={href}
                     target={key === 'email' ? undefined : '_blank'}
-                    rel={
-                      key === 'email'
-                        ? undefined
-                        : 'noopener noreferrer'
-                    }
+                    rel={key === 'email' ? undefined : 'noopener noreferrer'}
                     aria-label={`${labels[key]}: ${value}`}
                     className="group flex min-w-0 items-center gap-2 rounded-xl border border-border/80 bg-card/90 p-2 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-[0_12px_30px_-10px_rgba(117,82,186,0.15)] dark:hover:shadow-[0_12px_30px_-10px_rgba(195,178,245,0.1)] sm:gap-3 sm:rounded-2xl sm:p-3 md:gap-4 md:p-4"
                   >
@@ -127,7 +124,6 @@ export function Contact() {
                       <span className="truncate text-[7px] font-semibold tracking-[0.12em] text-accent uppercase sm:text-[9px] sm:tracking-[0.15em] md:text-[0.68rem] md:tracking-[0.18em]">
                         {labels[key]}
                       </span>
-
                       <span className="truncate text-[9px] font-medium text-foreground transition-colors duration-300 group-hover:text-primary sm:text-[11px] md:text-sm">
                         {value}
                       </span>
@@ -155,7 +151,6 @@ export function Contact() {
                 >
                   {t.contact.name}
                 </label>
-
                 <input
                   id="name"
                   name="name"
@@ -174,7 +169,6 @@ export function Contact() {
                 >
                   {t.contact.email}
                 </label>
-
                 <input
                   id="email"
                   name="email"
@@ -193,7 +187,6 @@ export function Contact() {
                 >
                   {t.contact.message}
                 </label>
-
                 <textarea
                   id="message"
                   name="message"
@@ -203,38 +196,33 @@ export function Contact() {
                 />
               </div>
 
-              {/* Submit */}
+              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="group mt-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-3 py-2 text-[9px] font-medium tracking-wide text-primary-foreground shadow-[0_10px_28px_-10px_rgba(117,82,186,0.35)] transition-all duration-300 hover:gap-2 hover:bg-primary/95 hover:shadow-[0_16px_36px_-10px_rgba(117,82,186,0.55)] disabled:opacity-60 sm:gap-2 sm:px-5 sm:py-2.5 sm:text-xs md:gap-2.5 md:px-7 md:py-3.5 md:text-sm dark:shadow-[0_10px_28px_-10px_rgba(195,178,245,0.3)] dark:hover:shadow-[0_16px_36px_-10px_rgba(195,178,245,0.5)]"
+                className="group mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-md transition-all duration-300 hover:bg-primary/90 hover:shadow-lg disabled:pointer-events-none disabled:opacity-50 sm:px-5 sm:py-3 sm:text-sm"
               >
-                {status === 'sending'
-                  ? t.contact.sending
-                  : t.contact.send}
-
-                <Send className="size-3 transition-transform duration-300 group-hover:translate-x-0.5 rtl:-scale-x-100 sm:size-3.5 md:size-4" />
+                {status === 'sending' ? (
+                  <span>{t.contact.sending || 'Sending...'}</span>
+                ) : (
+                  <>
+                    <span>{t.contact.send || 'Send Message'}</span>
+                    <Send className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:size-4" />
+                  </>
+                )}
               </button>
 
-              {/* Success */}
-              {status === 'success' ? (
-                <p
-                  className="text-[9px] font-medium text-primary sm:text-xs md:text-sm"
-                  role="status"
-                >
-                  {t.contact.success}
+              {/* Success / Error Messages */}
+              {status === 'success' && (
+                <p className="mt-1 text-center text-xs font-medium text-green-500">
+                  {t.contact.success || 'Message sent successfully!'}
                 </p>
-              ) : null}
-
-              {/* Error */}
-              {status === 'error' ? (
-                <p
-                  className="text-[9px] font-medium text-destructive sm:text-xs md:text-sm"
-                  role="alert"
-                >
-                  {t.contact.error}
+              )}
+              {status === 'error' && (
+                <p className="mt-1 text-center text-xs font-medium text-red-500">
+                  {t.contact.error || 'Something went wrong. Please try again.'}
                 </p>
-              ) : null}
+              )}
 
             </div>
           </form>
