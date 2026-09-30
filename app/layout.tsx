@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Montserrat, Noto_Kufi_Arabic } from 'next/font/google'
+import { Cormorant_Garamond, Montserrat } from 'next/font/google'
 import { SiteProviders } from '@/components/site-providers'
 import './globals.css'
 
@@ -15,13 +15,6 @@ const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-montserrat',
-  display: 'swap',
-})
-
-const notoKufi = Noto_Kufi_Arabic({
-  subsets: ['arabic'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-noto-kufi',
   display: 'swap',
 })
 
@@ -47,7 +40,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${cormorant.variable} ${montserrat.variable} ${notoKufi.variable} dark bg-background`}
+      className={`${cormorant.variable} ${montserrat.variable} dark bg-background`}
     >
       <body className="bg-background text-foreground antialiased">
         <SiteProviders>{children}</SiteProviders>
