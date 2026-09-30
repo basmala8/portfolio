@@ -21,7 +21,7 @@ const projectsData = [
     name: "L'Aura Ceramics",
     desc: 'A ceramics and home decor website showcasing a collection of ceramic products and decorative pieces through a clean and elegant layout that keeps the products at the center.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
-    image: '/alora2.png',
+    image: "/alora2.PNG",
     live: 'https://github.io',
     code: 'https://github.com',
   },
